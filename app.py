@@ -48,19 +48,53 @@ def load_data():
 def esc(value):
     return html.escape(str(value or "").strip())
 
+def _query_value(name, default=None):
+    """Read a preference from the URL so it survives page reloads."""
+    try:
+        value = st.query_params.get(name, default)
+        if isinstance(value, list):
+            return value[0] if value else default
+        return value
+    except Exception:
+        return default
+
+
 def init_state():
+    # Streamlit session_state is temporary. Restore user preferences from
+    # URL query parameters so a browser reload does not reset them.
+    allowed_intervals = [5, 10, 15, 30, 60]
+    saved_level = _query_value("level", "HSK 1")
+    saved_random = str(_query_value("random", "0")).lower() in ("1", "true", "yes", "on")
+    try:
+        saved_interval = int(_query_value("interval", "10"))
+    except (TypeError, ValueError):
+        saved_interval = 10
+    if saved_interval not in allowed_intervals:
+        saved_interval = 10
+
     defaults = {
-        "level": "HSK 1",
+        "level": saved_level,
         "current_id": None,
         "favorites": [],
         "known_ids": [],
         "seen_ids": [],
-        "random_mode": False,
-        "interval": 10,
+        "random_mode": saved_random,
+        "interval": saved_interval,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
+
+
+def persist_preferences():
+    """Persist settings in the page URL; these survive reloads and bookmarks."""
+    try:
+        st.query_params["level"] = str(st.session_state.level)
+        st.query_params["random"] = "1" if st.session_state.random_mode else "0"
+        st.query_params["interval"] = str(int(st.session_state.interval))
+    except Exception:
+        # The app still works for Streamlit versions without query_params.
+        pass
 
 def choose_next(words):
     if words.empty:
@@ -87,67 +121,63 @@ def get_current(words):
 def add_css():
     st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap');
-    html, body, [class*="css"], .stApp {
-        font-family: 'Inter', 'Noto Sans SC', sans-serif;
-    }
     .stApp {
         background:
           radial-gradient(circle at 8% 8%, rgba(49,112,220,.28), transparent 28%),
           radial-gradient(circle at 92% 92%, rgba(37,89,154,.24), transparent 30%),
           #f4f7fc;
     }
-    .block-container {max-width: 960px; padding-top: .55rem; padding-bottom: 1rem;}
+    .block-container {max-width: 1320px; padding-top: 1.2rem; padding-bottom: 2.5rem;}
     [data-testid="stHeader"] {background: transparent;}
     .study-card {
         display:grid;
         grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-        gap: 10px;
+        gap: 18px;
         background: rgba(255,255,255,.97);
         border: 1px solid rgba(210,220,236,.8);
-        border-radius: 18px;
-        padding: 10px;
+        border-radius: 30px;
+        padding: 22px;
         box-shadow: 0 18px 48px rgba(25,55,100,.13);
         color:#101827;
-        min-height: 315px;
+        min-height: 500px;
     }
     .left-col {
-        padding: 1px 10px 1px 1px;
+        padding: 4px 22px 4px 4px;
         border-right: 2px solid #dce5f3;
         display:flex; flex-direction:column; justify-content:center;
     }
-    .right-col {display:flex; flex-direction:column; gap:8px; justify-content:center;}
-    .topline {display:flex; align-items:center; gap:14px; margin-bottom:9px; flex-wrap:wrap;}
-    .level-pill {background:#1264ed; color:white; padding:5px 10px; border-radius:18px; font-size:14px; font-weight:800;}
-    .counter {font-size:14px; font-weight:800; color:#15233c;}
-    .heart {margin-left:auto; color:#ed3345; font-size:20px; background:#fff0f3; border-radius:50%; padding:4px 8px;}
-    .hanzi {font-size:clamp(48px, 5.8vw, 76px); line-height:1.25; font-weight:800; text-align:center; margin:8px 0 10px; color:#101010;}
-    .pinyin {font-size:clamp(20px, 2.3vw, 28px); color:#1671ee; font-weight:800; text-align:center; margin:0 0 20px;}
-    .sound {display:inline-block; color:#1264ed; background:#e5efff; border-radius:50%; padding:8px 13px; font-size:16px; vertical-align:middle; margin-left:10px;}
-    .info-pill {border-radius:22px; padding:4px 8px; margin:3px 0; font-size:14px; text-align:center;}
+    .right-col {display:flex; flex-direction:column; gap:18px; justify-content:center;}
+    .topline {display:flex; align-items:center; gap:14px; margin-bottom:22px; flex-wrap:wrap;}
+    .level-pill {background:#1264ed; color:white; padding:10px 20px; border-radius:28px; font-size:16px; font-weight:800;}
+    .counter {font-size:16px; font-weight:800; color:#15233c;}
+    .heart {margin-left:auto; color:#ed3345; font-size:24px; background:#fff0f3; border-radius:50%; padding:8px 15px;}
+    .hanzi {font-size:clamp(60px, 7vw, 92px); line-height:1.25; font-weight:800; text-align:center; margin:8px 0 10px; color:#101010;}
+    .pinyin {font-size:clamp(24px, 2.8vw, 34px); color:#1671ee; font-weight:800; text-align:center; margin:0 0 20px;}
+    .sound {display:inline-block; color:#1264ed; background:#e5efff; border-radius:50%; padding:8px 13px; font-size:18px; vertical-align:middle; margin-left:10px;}
+    .info-pill {border-radius:28px; padding:9px 14px; margin:7px 0; font-size:16px; text-align:center;}
     .hanviet {background:#e5efff;}
     .meaning {background:#fff2d9;}
-    .example-vi {background:#f0eaff; font-size:13px; font-style:italic;}
+    .example-vi {background:#f0eaff; font-size:15px; font-style:italic;}
     .info-label {color:#1264ed; font-weight:800; margin-right:12px;}
-    .lang-panel {border-radius:17px; padding:9px 11px; min-height:105px; display:flex; flex-direction:column; justify-content:center;}
+    .lang-panel {border-radius:30px; padding:20px 22px; min-height:170px; display:flex; flex-direction:column; justify-content:center;}
     .english {background:linear-gradient(120deg,#edf4ff,#e4edff);}
     .vietnamese {background:linear-gradient(120deg,#fff0f5,#fde5ef);}
     .lang-head {display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:12px;}
-    .lang-tag {color:white; font-weight:900; font-size:16px; border-radius:14px; padding:8px 17px;}
+    .lang-tag {color:white; font-weight:900; font-size:18px; border-radius:15px; padding:8px 17px;}
     .en-tag {background:#1264ed;}
     .vi-tag {background:#ed2638;}
-    .gloss {font-size:clamp(18px,2vw,25px); font-weight:850; color:#101827;}
-    .part {font-size:13px; font-style:italic; color:#28364d;}
-    .quote {font-size:clamp(14px,1.45vw,19px); font-style:italic; color:#10264e; padding:7px 0 7px 20px; border-left:8px solid #1264ed; margin:8px 0 12px;}
+    .gloss {font-size:clamp(21px,2.4vw,30px); font-weight:850; color:#101827;}
+    .part {font-size:15px; font-style:italic; color:#28364d;}
+    .quote {font-size:clamp(16px,1.7vw,22px); font-style:italic; color:#10264e; padding:7px 0 7px 20px; border-left:8px solid #1264ed; margin:8px 0 12px;}
     .vietnamese .quote {border-left-color:#ed2638; font-style:normal;}
-    .meta {display:inline-block; background:rgba(255,255,255,.62); border-radius:24px; padding:4px 8px; font-size:13px; color:#172b4d; margin-top:4px;}
+    .meta {display:inline-block; background:rgba(255,255,255,.62); border-radius:24px; padding:8px 15px; font-size:15px; color:#172b4d; margin-top:4px;}
     .meta b {margin-right:10px;}
     @media(max-width:760px) {
-      .study-card {grid-template-columns:1fr; padding:9px; gap:8px; min-height:0;}
+      .study-card {grid-template-columns:1fr; padding:18px; gap:15px;}
       .left-col {border-right:0; border-bottom:2px solid #dce5f3; padding:0 0 18px;}
       .right-col {gap:12px;}
-      .lang-panel {min-height:95px; padding:9px;}
-      .hanzi {font-size:56px;}
+      .lang-panel {min-height:150px; padding:18px;}
+      .hanzi {font-size:66px;}
     }
     </style>
     """, unsafe_allow_html=True)
@@ -226,7 +256,9 @@ def main():
     with st.container():
         nav1, nav2, nav3, nav4 = st.columns([1.3, 1, 1, 1])
         with nav1:
-            st.session_state.level = st.selectbox("Cấp độ", levels, index=levels.index(st.session_state.level))
+            if st.session_state.level not in levels:
+                st.session_state.level = levels[0]
+            st.selectbox("Cấp độ", levels, key="level")
         with nav2:
             page = st.selectbox("Chức năng", ["Học từ", "Danh sách", "Yêu thích", "Cài đặt"])
         with nav3:
@@ -297,14 +329,18 @@ def main():
 
     else:
         st.subheader("Cài đặt")
-        st.session_state.interval = st.selectbox("Tự đổi từ sau", [5, 10, 15, 30, 60],
-                                                 index=[5, 10, 15, 30, 60].index(st.session_state.interval))
-        st.session_state.random_mode = st.checkbox("Lấy từ ngẫu nhiên", value=st.session_state.random_mode)
+        st.selectbox("Tự đổi từ sau", [5, 10, 15, 30, 60], key="interval")
+        st.checkbox("Lấy từ ngẫu nhiên", key="random_mode")
         if st.button("Áp dụng cài đặt"):
             st.session_state.current_id = None
             st.session_state.seen_ids = []
-            st.success("Đã cập nhật cài đặt.")
+            persist_preferences()
+            st.success("Đã lưu cài đặt. Tải lại trang vẫn giữ lựa chọn này.")
             st.rerun()
+
+    # Keep preferences synchronized on every rerun, including when the
+    # user changes HSK level or navigates away from the Settings page.
+    persist_preferences()
 
 if __name__ == "__main__":
     main()
