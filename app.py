@@ -87,9 +87,9 @@ def get_current(words):
 def add_css():
     st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Ma+Shan+Zheng&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap');
     html, body, [class*="css"], .stApp {
-        font-family: 'Be Vietnam Pro', 'Noto Sans SC', sans-serif;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
     }
     .stApp {
         background:
@@ -121,8 +121,8 @@ def add_css():
     .level-pill {background:#1264ed; color:white; padding:5px 10px; border-radius:18px; font-size:14px; font-weight:800;}
     .counter {font-size:14px; font-weight:800; color:#15233c;}
     .heart {margin-left:auto; color:#ed3345; font-size:20px; background:#fff0f3; border-radius:50%; padding:4px 8px;}
-    .hanzi {font-family:'Ma Shan Zheng','KaiTi','STKaiti',serif; font-size:clamp(48px, 5.8vw, 76px); line-height:1.2; font-weight:700; letter-spacing:2px; text-align:center; margin:8px 0 10px; color:#101010;}
-    .pinyin {font-size:clamp(20px, 2.3vw, 28px); color:#1671ee; font-weight:700; letter-spacing:.2px; text-align:center; margin:0 0 20px;}
+    .hanzi {font-size:clamp(48px, 5.8vw, 76px); line-height:1.25; font-weight:800; text-align:center; margin:8px 0 10px; color:#101010;}
+    .pinyin {font-size:clamp(20px, 2.3vw, 28px); color:#1671ee; font-weight:800; text-align:center; margin:0 0 20px;}
     .sound {display:inline-block; color:#1264ed; background:#e5efff; border-radius:50%; padding:8px 13px; font-size:16px; vertical-align:middle; margin-left:10px;}
     .info-pill {border-radius:22px; padding:4px 8px; margin:3px 0; font-size:14px; text-align:center;}
     .hanviet {background:#e5efff;}
