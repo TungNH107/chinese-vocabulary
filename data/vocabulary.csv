@@ -1,0 +1,21 @@
+﻿id,level,hanzi,pinyin,han_viet,han_viet_chars,meaning,word_type,example,example_pinyin,example_meaning
+1,HSK 1,学习,xuéxí,Học tập,学 (học) + 习 (tập),Học; học tập,Động từ,我每天学习中文。,Wǒ měitiān xuéxí Zhōngwén.,Tôi học tiếng Trung mỗi ngày.
+2,HSK 1,朋友,péngyou,Bằng hữu,朋 (bằng) + 友 (hữu),Bạn bè; người bạn,Danh từ,他是我的好朋友。,Tā shì wǒ de hǎo péngyou.,Anh ấy là người bạn tốt của tôi.
+3,HSK 1,学生,xuésheng,Học sinh,学 (học) + 生 (sinh),Học sinh; sinh viên,Danh từ,我是学生。,Wǒ shì xuésheng.,Tôi là học sinh.
+4,HSK 1,老师,lǎoshī,Lão sư,老 (lão) + 师 (sư),Thầy giáo; cô giáo,Danh từ,她是我的老师。,Tā shì wǒ de lǎoshī.,Cô ấy là giáo viên của tôi.
+5,HSK 1,国家,guójiā,Quốc gia,国 (quốc) + 家 (gia),Đất nước; quốc gia,Danh từ,中国是一个国家。,Zhōngguó shì yí ge guójiā.,Trung Quốc là một quốc gia.
+6,HSK 1,中国,Zhōngguó,Trung Quốc,中 (trung) + 国 (quốc),Trung Quốc,Danh từ,我想去中国。,Wǒ xiǎng qù Zhōngguó.,Tôi muốn đi Trung Quốc.
+7,HSK 1,中文,Zhōngwén,Trung văn,中 (trung) + 文 (văn),Tiếng Trung; chữ Trung Quốc,Danh từ,我会说中文。,Wǒ huì shuō Zhōngwén.,Tôi biết nói tiếng Trung.
+8,HSK 1,工作,gōngzuò,Công tác,工 (công) + 作 (tác),Công việc; làm việc,Danh từ/Động từ,我在这里工作。,Wǒ zài zhèlǐ gōngzuò.,Tôi làm việc ở đây.
+9,HSK 1,时间,shíjiān,Thời gian,时 (thời) + 间 (gian),Thời gian,Danh từ,现在是什么时间？,Xiànzài shì shénme shíjiān?,Bây giờ là mấy giờ?
+10,HSK 1,时候,shíhou,Thời hậu,时 (thời) + 候 (hậu),Lúc; khi; thời điểm,Danh từ,你什么时候来？,Nǐ shénme shíhou lái?,Khi nào bạn đến?
+11,HSK 2,文化,wénhuà,Văn hóa,文 (văn) + 化 (hóa),Văn hóa,Danh từ,我喜欢中国文化。,Wǒ xǐhuan Zhōngguó wénhuà.,Tôi thích văn hóa Trung Quốc.
+12,HSK 2,经济,jīngjì,Kinh tế,经 (kinh) + 济 (tế),Kinh tế,Danh từ,这个城市的经济很好。,Zhège chéngshì de jīngjì hěn hǎo.,Kinh tế của thành phố này rất tốt.
+13,HSK 2,电话,diànhuà,Điện thoại,电 (điện) + 话 (thoại),Điện thoại,Danh từ,请给我打电话。,Qǐng gěi wǒ dǎ diànhuà.,Vui lòng gọi điện cho tôi.
+14,HSK 2,电脑,diànnǎo,Điện não,电 (điện) + 脑 (não),Máy tính,Danh từ,我有一台电脑。,Wǒ yǒu yì tái diànnǎo.,Tôi có một chiếc máy tính.
+15,HSK 2,公司,gōngsī,Công ty,公 (công) + 司 (ty),Công ty,Danh từ,我在一家公司工作。,Wǒ zài yì jiā gōngsī gōngzuò.,Tôi làm việc tại một công ty.
+16,HSK 2,世界,shìjiè,Thế giới,世 (thế) + 界 (giới),Thế giới,Danh từ,世界很大。,Shìjiè hěn dà.,Thế giới rất rộng lớn.
+17,HSK 2,生活,shēnghuó,Sinh hoạt,生 (sinh) + 活 (hoạt),Cuộc sống; sinh hoạt,Danh từ/Động từ,我喜欢这里的生活。,Wǒ xǐhuan zhèlǐ de shēnghuó.,Tôi thích cuộc sống ở đây.
+18,HSK 2,交通,jiāotōng,Giao thông,交 (giao) + 通 (thông),Giao thông,Danh từ,这里的交通很方便。,Zhèlǐ de jiāotōng hěn fāngbiàn.,Giao thông ở đây rất thuận tiện.
+19,HSK 2,医院,yīyuàn,Y viện,医 (y) + 院 (viện),Bệnh viện,Danh từ,医院在学校旁边。,Yīyuàn zài xuéxiào pángbiān.,Bệnh viện ở cạnh trường học.
+20,HSK 2,银行,yínháng,Ngân hàng,银 (ngân) + 行 (hàng),Ngân hàng,Danh từ,银行几点开门？,Yínháng jǐ diǎn kāimén?,Ngân hàng mấy giờ mở cửa。
