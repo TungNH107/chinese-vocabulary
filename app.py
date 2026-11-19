@@ -102,7 +102,7 @@ def add_css():
         background: rgba(255,255,255,.97);
         border: 1px solid rgba(210,220,236,.8);
         border-radius: 30px;
-        padding: 22px;
+        padding: 18px;
         box-shadow: 0 18px 48px rgba(25,55,100,.13);
         color:#101827;
         min-height: 500px;
@@ -114,36 +114,36 @@ def add_css():
     }
     .right-col {display:flex; flex-direction:column; gap:18px; justify-content:center;}
     .topline {display:flex; align-items:center; gap:14px; margin-bottom:22px; flex-wrap:wrap;}
-    .level-pill {background:#1264ed; color:white; padding:10px 20px; border-radius:28px; font-size:16px; font-weight:800;}
-    .counter {font-size:16px; font-weight:800; color:#15233c;}
-    .heart {margin-left:auto; color:#ed3345; font-size:24px; background:#fff0f3; border-radius:50%; padding:8px 15px;}
-    .hanzi {font-size:clamp(60px, 7vw, 92px); line-height:1.25; font-weight:800; text-align:center; margin:8px 0 10px; color:#101010;}
-    .pinyin {font-size:clamp(24px, 2.8vw, 34px); color:#1671ee; font-weight:800; text-align:center; margin:0 0 20px;}
-    .sound {display:inline-block; color:#1264ed; background:#e5efff; border-radius:50%; padding:8px 13px; font-size:18px; vertical-align:middle; margin-left:10px;}
-    .info-pill {border-radius:28px; padding:9px 14px; margin:7px 0; font-size:16px; text-align:center;}
+    .level-pill {background:#1264ed; color:white; padding:10px 20px; border-radius:28px; font-size:14px; font-weight:800;}
+    .counter {font-size:14px; font-weight:800; color:#15233c;}
+    .heart {margin-left:auto; color:#ed3345; font-size:20px; background:#fff0f3; border-radius:50%; padding:8px 15px;}
+    .hanzi {font-size:clamp(48px, 5.8vw, 76px); line-height:1.25; font-weight:800; text-align:center; margin:8px 0 10px; color:#101010;}
+    .pinyin {font-size:clamp(20px, 2.3vw, 28px); color:#1671ee; font-weight:800; text-align:center; margin:0 0 20px;}
+    .sound {display:inline-block; color:#1264ed; background:#e5efff; border-radius:50%; padding:8px 13px; font-size:16px; vertical-align:middle; margin-left:10px;}
+    .info-pill {border-radius:28px; padding:7px 12px; margin:6px 0; font-size:14px; text-align:center;}
     .hanviet {background:#e5efff;}
     .meaning {background:#fff2d9;}
-    .example-vi {background:#f0eaff; font-size:15px; font-style:italic;}
+    .example-vi {background:#f0eaff; font-size:13px; font-style:italic;}
     .info-label {color:#1264ed; font-weight:800; margin-right:12px;}
-    .lang-panel {border-radius:30px; padding:20px 22px; min-height:170px; display:flex; flex-direction:column; justify-content:center;}
+    .lang-panel {border-radius:30px; padding:16px 18px; min-height:150px; display:flex; flex-direction:column; justify-content:center;}
     .english {background:linear-gradient(120deg,#edf4ff,#e4edff);}
     .vietnamese {background:linear-gradient(120deg,#fff0f5,#fde5ef);}
     .lang-head {display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:12px;}
-    .lang-tag {color:white; font-weight:900; font-size:18px; border-radius:15px; padding:8px 17px;}
+    .lang-tag {color:white; font-weight:900; font-size:16px; border-radius:14px; padding:8px 17px;}
     .en-tag {background:#1264ed;}
     .vi-tag {background:#ed2638;}
-    .gloss {font-size:clamp(21px,2.4vw,30px); font-weight:850; color:#101827;}
-    .part {font-size:15px; font-style:italic; color:#28364d;}
-    .quote {font-size:clamp(16px,1.7vw,22px); font-style:italic; color:#10264e; padding:7px 0 7px 20px; border-left:8px solid #1264ed; margin:8px 0 12px;}
+    .gloss {font-size:clamp(18px,2vw,25px); font-weight:850; color:#101827;}
+    .part {font-size:13px; font-style:italic; color:#28364d;}
+    .quote {font-size:clamp(14px,1.45vw,19px); font-style:italic; color:#10264e; padding:7px 0 7px 20px; border-left:8px solid #1264ed; margin:8px 0 12px;}
     .vietnamese .quote {border-left-color:#ed2638; font-style:normal;}
-    .meta {display:inline-block; background:rgba(255,255,255,.62); border-radius:24px; padding:8px 15px; font-size:15px; color:#172b4d; margin-top:4px;}
+    .meta {display:inline-block; background:rgba(255,255,255,.62); border-radius:24px; padding:8px 15px; font-size:13px; color:#172b4d; margin-top:4px;}
     .meta b {margin-right:10px;}
     @media(max-width:760px) {
       .study-card {grid-template-columns:1fr; padding:18px; gap:15px;}
       .left-col {border-right:0; border-bottom:2px solid #dce5f3; padding:0 0 18px;}
       .right-col {gap:12px;}
       .lang-panel {min-height:150px; padding:18px;}
-      .hanzi {font-size:66px;}
+      .hanzi {font-size:56px;}
     }
     </style>
     """, unsafe_allow_html=True)
