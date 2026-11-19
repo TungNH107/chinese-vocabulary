@@ -6,15 +6,9 @@
 - Branch: `main`
 - Main file path: `app.py`
 
-## Secrets
+## Login
 
-In Streamlit Cloud, open **Manage app → Settings → Secrets** and add:
-
-```toml
-APP_PASSWORD = "choose-a-private-password"
-```
-
-Do not commit the password to GitHub.
+This version does not require a password or Streamlit Secrets. Anyone with the app URL can open it.
 
 ## Files
 

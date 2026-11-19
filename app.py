@@ -21,42 +21,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# -------------------- Bảo vệ bằng mật khẩu --------------------
-def login_gate():
-    """Mật khẩu lấy từ Streamlit Cloud > App settings > Secrets."""
-    try:
-        app_password = st.secrets.get("APP_PASSWORD", "")
-    except Exception:
-        app_password = ""
-
-    if not app_password:
-        st.error(
-            "Ứng dụng chưa được cấu hình mật khẩu. "
-            "Vào Manage app → Settings → Secrets và thêm "
-            '`APP_PASSWORD = "mat_khau_cua_ban"`.'
-        )
-        st.stop()
-
-    if st.session_state.get("logged_in", False):
-        return
-
-    st.markdown(
-        "<div class='login-title'>📚 Vocabulary</div>"
-        "<div class='muted'>CHINESE LEARNING · HSK 2.0</div>",
-        unsafe_allow_html=True,
-    )
-    with st.form("login_form"):
-        password = st.text_input("Mật khẩu truy cập", type="password")
-        submitted = st.form_submit_button("Đăng nhập", use_container_width=True)
-    if submitted:
-        if password == app_password:
-            st.session_state.logged_in = True
-            st.rerun()
-        else:
-            st.error("Mật khẩu chưa đúng.")
-    st.stop()
-
-
 # -------------------- Dữ liệu --------------------
 @st.cache_data
 def read_vocabulary(file_path: str, modified_time: float):
@@ -370,7 +334,6 @@ def render_settings(df):
 # -------------------- Chạy ứng dụng --------------------
 def main():
     add_styles()
-    login_gate()
     init_state()
     df = get_vocab()
 
